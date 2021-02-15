@@ -14,8 +14,13 @@ public class MovieList {
     }
 
     //getters
-    public ArrayList<Movie> getMovieList() {
-        return movieList;
+    public ArrayList<String> getMovieList() {
+        ArrayList<String> lst = new ArrayList<>();
+        for (Movie movie : movieList) {
+            String t = movie.getTitle();
+               lst.add(t);
+        }
+        return lst;
     }
 
     //EFFECTS: adds a movie to a list
@@ -25,7 +30,7 @@ public class MovieList {
 
     //EFFECTS: takes in a string and searches list for movie titles match that string.
     // returns movie if found and null if not found
-    public Movie selectMovie(ArrayList<Movie> movieList, String selectedMovie) {
+    public Movie selectMovie(String selectedMovie) {
         for (Movie movie : movieList) {
             if (movie.getTitle().equals(selectedMovie)) {
                 return movie;

@@ -37,9 +37,23 @@ class MovieTest {
     }
 
     @Test
+    public void testSetTitle() {
+        testMovie.setTitle("NewTestTitle");
+        assertEquals("NewTestTitle", testMovie.getTitle());
+    }
+
+    @Test
+    public void testSetYear() {
+        testMovie.setYear(1999);
+        assertEquals(1999, testMovie.getYear());
+    }
+
+    @Test
     public void testSetRating() {
         testMovie.setRating(5);
         assertEquals(5, testMovie.getRating());
     }
+
+
 
 }

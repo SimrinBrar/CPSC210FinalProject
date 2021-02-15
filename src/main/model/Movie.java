@@ -28,8 +28,16 @@ public class Movie {
     }
 
     //setters
-//    public void setTitle(String title) { this.title = title}
-//    public void setYear(int year) {this.year = year }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+
     public void setRating(int rating) {
         this.rating = rating;
     }
