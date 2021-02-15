@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class MovieList {
 
@@ -18,7 +18,7 @@ public class MovieList {
         ArrayList<String> lst = new ArrayList<>();
         for (Movie movie : movieList) {
             String t = movie.getTitle();
-               lst.add(t);
+            lst.add(t);
         }
         return lst;
     }
