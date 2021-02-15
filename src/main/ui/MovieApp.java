@@ -4,11 +4,11 @@ import model.MovieList;
 import model.Movie;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class MovieApp {
     private MovieList myList;
     private Scanner input;
+
 
     //EFFECTS: runs MovieApp
     public MovieApp() {
@@ -18,29 +18,20 @@ public class MovieApp {
     //MODIFIES: this
     //EFFECTS: deals with user input
     private void runApp() {
-        boolean running = true;
         String command = null;
+        Boolean running = true;
 
         init();
 
         while (running) {
             displayMenu();
             command = input.next();
-
-            if (command.equals("view")) {
-                printMovieList();
+            if (command.equals("quit")) {
                 running = false;
-            }
-            if (command.equals("new")) {
-                newMovie();
-                running = false;
-
-            }
-
+            } else
+                processCommand(command);
 
         }
-
-
     }
 
     //Displays menu options
@@ -48,6 +39,16 @@ public class MovieApp {
         System.out.println("Choose an option:");
         System.out.println("Type 'new' to add a new movie");
         System.out.println("Type 'view' to view a list of your saved movies");
+        System.out.println("Type 'quit' to close movie app");
+    }
+
+    private void processCommand(String command) {
+        if (command.equals("view")) {
+            printMovieList();
+        }
+        if (command.equals("new")) {
+            newMovieTitle();
+        }
     }
 
     //EFFECTS: prints a list of movies
@@ -58,12 +59,19 @@ public class MovieApp {
         System.out.println(myList.getTitleList());
     }
 
-    private void newMovie() {
-        boolean running = true;
+    private void newMovieTitle() {
+        String command = null;
+        System.out.println("Type the title name");
+        Movie newMovie = new Movie("blank", 0000, 3);
+        newMovie.setTitle(command);
+        newMovieYear(newMovie);
+    }
 
-        while (running) {
-            System.out.println("Type the title name");
-        }
+    private void newMovieYear(Movie newMovie) {
+        int command = Integer.parseInt(null);
+        System.out.println("Type the year the movie was released");
+        newMovie.setYear(command);
+        addToMyList(newMovie);
     }
 
     //EFFECTS: adds a movie to myList
