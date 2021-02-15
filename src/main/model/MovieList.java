@@ -14,7 +14,7 @@ public class MovieList {
     }
 
     //getters
-    public ArrayList<String> getMovieList() {
+    public ArrayList<String> getTitleList() {
         ArrayList<String> lst = new ArrayList<>();
         for (Movie movie : movieList) {
             String t = movie.getTitle();

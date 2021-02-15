@@ -1,13 +1,10 @@
 package model;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
-import model.MovieList;
-import model.Movie;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
 
 public class MovieListTest {
 
@@ -24,17 +21,33 @@ public class MovieListTest {
         movie3 = new Movie("TestMovie3", 2003, 3);
         testMovieList.addMovie(movie1);
         testMovieList.addMovie(movie2);
-        testMovieList.addMovie(movie3);
+        testMovieList.addMovie(movie2);
 
     }
 
     @Test
-    public void testGetMovieList() {
+    public void testGetTitleList() {
+        ArrayList<String> testTitleList = new ArrayList<>();
+        testTitleList.add("TestMovie1");
+        testTitleList.add("TestMovie2");
+        testTitleList.add("TestMovie3");
+        assertArrayEquals(testTitleList, testMovieList.getTitleList());
+    }
 
-
+    private void assertArrayEquals(ArrayList<String> testTitleList, ArrayList<String> titleList) {
     }
 
 
+    @Test
+    public void testSelectMovie() {
+        assertEquals(movie1, testMovieList.selectMovie("TestMovie1"));
+        assertEquals(movie2, testMovieList.selectMovie("TestMovie2"));
+    }
+
+//    @Test
+//    public void testAddMovie() {
+//
+//    }
 
 
 }
