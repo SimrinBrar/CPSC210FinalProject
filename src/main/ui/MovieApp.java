@@ -62,7 +62,7 @@ public class MovieApp {
         boolean running = true;
 
         while (running) {
-            System.out.println("type the title name");
+            System.out.println("Type the title name");
         }
     }
 
