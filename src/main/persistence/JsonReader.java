@@ -34,7 +34,7 @@ public class JsonReader {
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (Stream<String> stream = Files.lines( Paths.get(source), StandardCharsets.UTF_8)) {
+        try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
 
@@ -64,7 +64,7 @@ public class JsonReader {
     private void addMovie(MovieList ml, JSONObject jsonObject) {
         String title = jsonObject.getString("title");
         int year = jsonObject.getInt("year");
-        int rating =jsonObject.getInt("rating");
+        int rating = jsonObject.getInt("rating");
         Movie movie = new Movie();
         movie.setTitle(title);
         movie.setYear(year);

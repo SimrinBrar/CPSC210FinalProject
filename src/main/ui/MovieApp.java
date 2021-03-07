@@ -71,8 +71,7 @@ public class MovieApp {
             processSaveCommand();
         } else if (command.equals("load")) {
             processLoadCommand();
-        }
-        else {
+        } else {
             System.out.println("not a valid command, try again");
         }
     }
@@ -92,7 +91,7 @@ public class MovieApp {
             jsonWriter.write(myList);
             jsonWriter.close();
             System.out.println("saved " + myList.getName() + " to " + JSON_STORE);
-        } catch (FileNotFoundException e ){
+        } catch (FileNotFoundException e) {
             System.out.println("unable to write file to " + JSON_STORE);
         }
     }
