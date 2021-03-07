@@ -1,5 +1,6 @@
 package model;
 
+// represents a movie object
 public class Movie {
 
     private int year;
@@ -8,10 +9,13 @@ public class Movie {
 
     //REQUIRES: rating is an integer between 1 and 5
     //EFFECTS: constructs a movie with title, release year and rating
-    public Movie(String title, int year, int rating) {
+    public Movie() {
         this.title = title;
         this.year = year;
         this.rating = rating;
+        title = null;
+        year = 0;
+        rating = 0;
     }
 
     //getters
@@ -32,11 +36,9 @@ public class Movie {
         this.title = title;
     }
 
-
     public void setYear(int year) {
         this.year = year;
     }
-
 
     public void setRating(int rating) {
         this.rating = rating;

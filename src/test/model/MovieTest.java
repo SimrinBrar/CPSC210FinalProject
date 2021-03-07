@@ -5,12 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// tests for Movie
 class MovieTest {
     private Movie testMovie;
 
     @BeforeEach
     void setup() {
-        testMovie = new Movie("TestName", 2000, 3);
+        testMovie = new Movie();
     }
 
     @Test

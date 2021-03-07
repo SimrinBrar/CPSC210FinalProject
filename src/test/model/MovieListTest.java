@@ -2,10 +2,11 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-
+// tests for MovieList
 public class MovieListTest {
 
     private MovieList testMovieList;
@@ -16,9 +17,18 @@ public class MovieListTest {
     @BeforeEach
     public void setup() {
         testMovieList = new MovieList();
-        movie1 = new Movie("TestMovie1", 2001, 1);
-        movie2 = new Movie("TestMovie2", 2002, 2);
-        movie3 = new Movie("TestMovie3", 2003, 3);
+        movie1 = new Movie();
+        movie1.setTitle("TestMovie1");
+        movie1.setYear(2001);
+        movie1.setRating(1);
+        movie2 = new Movie();
+        movie2.setTitle("TestMovie2");
+        movie2.setYear(2002);
+        movie2.setRating(2);
+        movie3 = new Movie();
+        movie3.setTitle("TestMovie3");
+        movie3.setYear(2003);
+        movie3.setRating(3);
         testMovieList.addMovie(movie1);
         testMovieList.addMovie(movie2);
         testMovieList.addMovie(movie2);
@@ -27,14 +37,14 @@ public class MovieListTest {
 
     @Test
     public void testGetTitleList() {
-        ArrayList<String> testTitleList = new ArrayList<>();
+        HashSet<String> testTitleList = new HashSet<>();
         testTitleList.add("TestMovie1");
         testTitleList.add("TestMovie2");
         testTitleList.add("TestMovie3");
         assertArrayEquals(testTitleList, testMovieList.getTitleList());
     }
 
-    private void assertArrayEquals(ArrayList<String> testTitleList, ArrayList<String> titleList) {
+    private void assertArrayEquals(HashSet<String> testTitleList, HashSet<String> titleList) {
     }
 
 
@@ -44,10 +54,19 @@ public class MovieListTest {
         assertEquals(movie2, testMovieList.selectMovie("TestMovie2"));
     }
 
-//    @Test
-//    public void testAddMovie() {
-//
-//    }
+    @Test
+    public void testIsEmptyMovieList() {
+        MovieList testMovieList2 = new MovieList();
+        assertTrue(testMovieList2.isEmptyMovieList());
+        assertFalse(testMovieList.isEmptyMovieList());
+    }
+
+    @Test
+    public void testReturnNextMovie() {
+        MovieList testEmptyMovieList = new MovieList();
+        assertEquals(movie1, testMovieList.returnNextMovie());
+        assertEquals(null, testEmptyMovieList.returnNextMovie());
+    }
 
 
 }
