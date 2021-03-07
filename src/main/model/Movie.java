@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // represents a movie object
-public class Movie {
+public class Movie implements Writable {
 
     private int year;
     private int rating;
@@ -42,6 +45,15 @@ public class Movie {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("title", title);
+        json.put("year", year);
+        json.put("rating", rating);
+        return json;
     }
 }
 

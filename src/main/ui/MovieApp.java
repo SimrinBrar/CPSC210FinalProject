@@ -1,14 +1,21 @@
 package ui;
 
-import model.MovieList;
 import model.Movie;
+import model.MovieList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 //Movie app
 public class MovieApp {
+    private static final String JSON_STORE = "./data/movielist.json";
     private MovieList myList;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
 
     //EFFECTS: runs MovieApp
@@ -40,7 +47,7 @@ public class MovieApp {
     //MODIFIES: this
     //EFFECTS: initializes a list for the user's movies
     private void initial() {
-        myList = new MovieList();
+        myList = new MovieList("my Movie List");
         input = new Scanner(System.in);
     }
 
@@ -49,6 +56,8 @@ public class MovieApp {
         System.out.println("Choose an option:");
         System.out.println("Type 'add' to add a new movie");
         System.out.println("Type 'view' to view a list of your saved movies");
+        System.out.println("Type 'save' to save your current list to file");
+        System.out.println("Type 'load' to load list from file");
         System.out.println("Type 'quit' to close movie app\n");
     }
 
@@ -58,8 +67,33 @@ public class MovieApp {
             processViewCommand();
         } else if (command.equals("add")) {
             processAddCommand();
-        } else {
+        } else if (command.equals("save")) {
+            processSaveCommand();
+        } else if (command.equals("load")) {
+            processLoadCommand();
+        }
+        else {
             System.out.println("not a valid command, try again");
+        }
+    }
+
+    private void processLoadCommand() {
+        try {
+            myList = jsonReader.read();
+            System.out.println("Loaded " + myList.getName() + "from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+    private void processSaveCommand() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(myList);
+            jsonWriter.close();
+            System.out.println("saved " + myList.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e ){
+            System.out.println("unable to write file to " + JSON_STORE);
         }
     }
 

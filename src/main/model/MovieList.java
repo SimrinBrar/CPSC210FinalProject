@@ -1,14 +1,26 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.HashSet;
 
+
 //represents a list of movie objects
-public class MovieList {
+public class MovieList implements Writable {
     private HashSet<Movie> movieList;
+    private String name;
 
     //EFFECTS: creates an empty list of movies
-    public MovieList() {
+    public MovieList(String name) {
+        this.name = name;
         movieList = new HashSet<>();
+    }
+
+    //getters
+    public String getName() {
+        return name;
     }
 
     //EFFECTS: returns a list of movie titles
@@ -52,5 +64,22 @@ public class MovieList {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("movies", moviesToJSON());
+        return json;
+    }
+
+    private JSONArray moviesToJSON() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Movie m : movieList) {
+            jsonArray.put(m.toJson());
+        }
+        return jsonArray;
     }
 }

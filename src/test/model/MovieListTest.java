@@ -17,7 +17,7 @@ public class MovieListTest {
 
     @BeforeEach
     public void setup() {
-        testMovieList = new MovieList();
+        testMovieList = new MovieList("test movie list");
         movie1 = new Movie();
         movie1.setTitle("TestMovie1");
         movie1.setYear(2001);
@@ -57,14 +57,14 @@ public class MovieListTest {
 
     @Test
     public void testIsEmptyMovieList() {
-        MovieList testMovieList2 = new MovieList();
+        MovieList testMovieList2 = new MovieList("test movie list 2");
         assertTrue(testMovieList2.isEmptyMovieList());
         assertFalse(testMovieList.isEmptyMovieList());
     }
 
     @Test
     public void testReturnNextMovie() {
-        MovieList testEmptyMovieList = new MovieList();
+        MovieList testEmptyMovieList = new MovieList("test empty movie list");
         assertEquals(movie1, testMovieList.returnNextMovie());
         assertEquals(null, testEmptyMovieList.returnNextMovie());
     }
