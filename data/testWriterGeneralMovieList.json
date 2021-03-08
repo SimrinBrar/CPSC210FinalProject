@@ -1,0 +1,15 @@
+{
+  "movies": [
+    {
+      "year": 2004,
+      "rating": 4,
+      "title": "shrek 2"
+    },
+    {
+      "year": 2001,
+      "rating": 5,
+      "title": "shrek"
+    }
+  ],
+  "name": "My movie list"
+}

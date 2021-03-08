@@ -4,18 +4,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 
 //represents a list of movie objects
 public class MovieList implements Writable {
-    private HashSet<Movie> movieList;
+    private ArrayList<Movie> movieList;
     private String name;
 
     //EFFECTS: creates an empty list of movies
     public MovieList(String name) {
         this.name = name;
-        movieList = new HashSet<>();
+        movieList = new ArrayList<>();
     }
 
     //getters
@@ -23,14 +23,23 @@ public class MovieList implements Writable {
         return name;
     }
 
+    public Movie getMovie(int n) {
+        return movieList.get(n);
+    }
+
     //EFFECTS: returns a list of movie titles
-    public HashSet<String> getTitleList() {
-        HashSet<String> lst = new HashSet<>();
+    public ArrayList<String> getTitleList() {
+        ArrayList<String> lst = new ArrayList<>();
         for (Movie movie : movieList) {
             String t = movie.getTitle();
             lst.add(t);
         }
         return lst;
+    }
+
+    //EFFECTS: returns the number of movies in a movie list
+    public int movieListSize() {
+        return movieList.size();
     }
 
     //MODIFIES: this
@@ -56,7 +65,7 @@ public class MovieList implements Writable {
         return movieList.isEmpty();
     }
 
-    //EFFECTS:returns the next movie in the hashset and null if
+    //EFFECTS:returns the next movie in the array list and null if
     //        there is no next movie
     public Movie returnNextMovie() {
         if (!movieList.isEmpty()) {

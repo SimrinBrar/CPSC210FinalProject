@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,14 +38,14 @@ public class MovieListTest {
 
     @Test
     public void testGetTitleList() {
-        HashSet<String> testTitleList = new HashSet<>();
+        ArrayList<String> testTitleList = new ArrayList<>();
         testTitleList.add("TestMovie1");
         testTitleList.add("TestMovie2");
         testTitleList.add("TestMovie3");
         assertArrayEquals(testTitleList, testMovieList.getTitleList());
     }
 
-    private void assertArrayEquals(HashSet<String> testTitleList, HashSet<String> titleList) {
+    private void assertArrayEquals(ArrayList<String> testTitleList, ArrayList<String> titleList) {
     }
 
 
