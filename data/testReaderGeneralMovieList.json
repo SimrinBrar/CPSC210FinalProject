@@ -1,12 +1,12 @@
 {
   "movies": [
     {
-      "name": "shrek",
+      "title": "shrek",
       "year": "2001",
       "rating": "5"
     },
     {
-      "name": "shrek 2",
+      "title": "shrek 2",
       "year": "2004",
       "rating": "4"
     }
