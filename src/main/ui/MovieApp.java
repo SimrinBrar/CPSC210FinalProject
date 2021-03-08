@@ -20,16 +20,16 @@ public class MovieApp {
 
     //EFFECTS: runs MovieApp
     public MovieApp() throws FileNotFoundException {
-        myList = new MovieList("my Movie List");
+        myList = new MovieList("My Movie List");
         input = new Scanner(System.in);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        runApp();
+        runMovieApp();
     }
 
     //MODIFIES: this
     //EFFECTS: deals with user input
-    private void runApp() {
+    private void runMovieApp() {
         boolean running = true;
         String command = null;
 
@@ -73,6 +73,7 @@ public class MovieApp {
         }
     }
 
+    //EFFECTS: loads the movie list from file
     private void processLoadCommand() {
         try {
             myList = jsonReader.read();
@@ -82,6 +83,7 @@ public class MovieApp {
         }
     }
 
+    //EFFECTS: saves the movie list to file
     private void processSaveCommand() {
         try {
             jsonWriter.open();
@@ -121,7 +123,6 @@ public class MovieApp {
         String select = input.nextLine();
         select = select.toLowerCase();
         return myList.selectMovie(select);
-
     }
 
     //MODIFIES: this
@@ -144,6 +145,7 @@ public class MovieApp {
     public void processAddCommand() {
         System.out.println("Enter a movie title\n");
         String select = "";
+
         select = input.nextLine();
         select = select.toLowerCase();
 

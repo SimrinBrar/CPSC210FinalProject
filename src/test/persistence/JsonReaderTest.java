@@ -8,6 +8,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+//tests for JsonReader
 public class JsonReaderTest extends JsonTest {
 
     @Test

@@ -9,6 +9,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+//tests for JsonWriter
 public class JsonWriterTest extends JsonTest {
 
     @Test
@@ -40,7 +41,7 @@ public class JsonWriterTest extends JsonTest {
         }
     }
 
-    Movie TestMovie1() {
+    Movie testMovie1() {
         Movie m1 = new Movie();
         m1.setTitle("shrek 2");
         m1.setYear(2004);
@@ -48,7 +49,7 @@ public class JsonWriterTest extends JsonTest {
         return m1;
     }
 
-    Movie TestMovie2() {
+    Movie testMovie2() {
         Movie m2 = new Movie();
         m2.setTitle("shrek");
         m2.setYear(2001);
@@ -60,8 +61,8 @@ public class JsonWriterTest extends JsonTest {
     void testWriterGeneralMovieList() {
         try {
             MovieList ml = new MovieList("My movie list");
-            ml.addMovie(TestMovie1());
-            ml.addMovie(TestMovie2());
+            ml.addMovie(testMovie1());
+            ml.addMovie(testMovie2());
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralMovielist.json");
             writer.open();
             writer.write(ml);

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 //A reader that reads MovieList from JSON data stored in file
 //Citation: code obtained from JsonSerializationDemo
-//          URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+//URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReader {
     private String source;
 

@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 
 //A writer that writes JSON representation of MovieList to file
 //Citation: code obtained from JsonSerializationDemo
-//          URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+//URL: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -21,8 +21,8 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
-    //          be opened for writing
+    // EFFECTS: opens writer; throws FileNotFoundException
+    // if destination file cannot be opened for writing
     public void open() throws FileNotFoundException {
         writer = new PrintWriter(new File(destination));
     }

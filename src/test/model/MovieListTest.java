@@ -33,7 +33,6 @@ public class MovieListTest {
         testMovieList.addMovie(movie1);
         testMovieList.addMovie(movie2);
         testMovieList.addMovie(movie2);
-
     }
 
     @Test
