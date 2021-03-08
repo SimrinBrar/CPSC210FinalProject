@@ -19,7 +19,11 @@ public class MovieApp {
 
 
     //EFFECTS: runs MovieApp
-    public MovieApp() {
+    public MovieApp() throws FileNotFoundException {
+        myList = new MovieList("my Movie List");
+        input = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runApp();
     }
 
@@ -28,8 +32,6 @@ public class MovieApp {
     private void runApp() {
         boolean running = true;
         String command = null;
-
-        initial();
 
         while (running) {
             displayMenu();
@@ -44,12 +46,7 @@ public class MovieApp {
         System.out.println("you closed the movie app, Goodbye");
     }
 
-    //MODIFIES: this
-    //EFFECTS: initializes a list for the user's movies
-    private void initial() {
-        myList = new MovieList("my Movie List");
-        input = new Scanner(System.in);
-    }
+
 
     //EFFECTS: Displays menu options
     private void displayMenu() {
