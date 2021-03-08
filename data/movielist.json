@@ -1,8 +1,4 @@
 {
-    "movies": [{
-        "year": 1975,
-        "rating": 0,
-        "title": "jaws"
-    }],
+    "movies": [],
     "name": "My Movie List"
 }

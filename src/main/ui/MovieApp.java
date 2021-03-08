@@ -96,28 +96,32 @@ public class MovieApp {
 
     //EFFECTS: prints a list of my movies
     private void processViewCommand() {
-        for (String m : myList.getTitleList()) {
-            System.out.println(m);
-        }
-        System.out.println("type a movie title to view it's details and change it's rating\n");
-        Movie selectedMovie = searchMovieList();
-        if (selectedMovie == null) {
-            System.out.println("this movie is not in your list");
+        if (myList.getTitleList().isEmpty()) {
+            System.out.println("there are no movies in your list");
         } else {
-            System.out.println(selectedMovie.getTitle() + " was released in the year "
-                    + selectedMovie.getYear());
-
-            if (selectedMovie.getRating() == 0) {
-                System.out.println("you have not rated this movie yet.");
-            } else {
-                System.out.println("you rated this movie " + selectedMovie.getRating() + " out of 5 stars");
+            for (String m : myList.getTitleList()) {
+                System.out.println(m);
             }
+            System.out.println("type a movie title to view it's details and change it's rating\n");
+            Movie selectedMovie = searchMovieList();
+            if (selectedMovie == null) {
+                System.out.println("this movie is not in your list");
+            } else {
+                System.out.println(selectedMovie.getTitle() + " was released in the year "
+                        + selectedMovie.getYear());
 
-            addMovieRating(selectedMovie);
+                if (selectedMovie.getRating() == 0) {
+                    System.out.println("you have not rated this movie yet.");
+                } else {
+                    System.out.println("you rated this movie " + selectedMovie.getRating() + " out of 5 stars");
+                }
+
+                addMovieRating(selectedMovie);
+            }
         }
     }
 
-    //EFFECTS: finds selected movie returns it
+    //EFFECTS: finds selected movie and returns it
     private Movie searchMovieList() {
         String select = input.nextLine();
         select = select.toLowerCase();
