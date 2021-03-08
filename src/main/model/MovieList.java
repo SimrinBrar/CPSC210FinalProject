@@ -79,13 +79,12 @@ public class MovieList implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("movies", moviesToJSON());
+        json.put("movies", moviesToJson());
         return json;
     }
 
-    private JSONArray moviesToJSON() {
+    private JSONArray moviesToJson() {
         JSONArray jsonArray = new JSONArray();
-
         for (Movie m : movieList) {
             jsonArray.put(m.toJson());
         }

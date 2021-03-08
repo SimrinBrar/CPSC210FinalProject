@@ -47,7 +47,6 @@ public class MovieApp {
     }
 
 
-
     //EFFECTS: Displays menu options
     private void displayMenu() {
         System.out.println("Choose an option:");
