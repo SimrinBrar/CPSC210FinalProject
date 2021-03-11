@@ -35,7 +35,10 @@ public class MovieApp {
 
         while (running) {
             displayMenu();
-            command = input.nextLine();
+            command = input.nextLine().trim();
+            if (command.equals("")) {
+                continue;
+            }
             command = command.toLowerCase();
             if (command.equals("quit")) {
                 running = false;

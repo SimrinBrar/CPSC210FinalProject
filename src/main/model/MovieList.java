@@ -83,6 +83,7 @@ public class MovieList implements Writable {
         return json;
     }
 
+    //EFFECTS:returns movies as jsonArray
     private JSONArray moviesToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Movie m : movieList) {
