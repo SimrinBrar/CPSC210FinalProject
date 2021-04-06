@@ -25,11 +25,11 @@ public class MovieListTest {
         movie2 = new Movie();
         movie2.setTitle("TestMovie2");
         movie2.setYear(2002);
-        movie2.setRating(2);
+        movie2.setRating(5);
         movie3 = new Movie();
         movie3.setTitle("TestMovie3");
         movie3.setYear(2003);
-        movie3.setRating(3);
+        movie3.setRating(5);
         testMovieList.addMovie(movie1);
         testMovieList.addMovie(movie2);
         testMovieList.addMovie(movie2);
@@ -66,6 +66,14 @@ public class MovieListTest {
         MovieList testEmptyMovieList = new MovieList("test empty movie list");
         assertEquals(movie1, testMovieList.returnNextMovie());
         assertEquals(null, testEmptyMovieList.returnNextMovie());
+    }
+
+    @Test
+    public void testTopRatedMovies() {
+        ArrayList<Movie> testList = new ArrayList<>();
+        testList.add(movie2);
+        testList.add(movie2);
+        assertEquals(testList, testMovieList.topRatedMovies());
     }
 
 

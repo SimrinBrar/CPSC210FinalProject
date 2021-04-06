@@ -42,6 +42,7 @@ public class MovieList implements Writable {
         return movieList.size();
     }
 
+    //REQUIRES: movie with the same title is not already in list
     //MODIFIES: this
     //EFFECTS: adds a movie to a list
     public void addMovie(Movie addedMovie) {
@@ -73,6 +74,16 @@ public class MovieList implements Writable {
         } else {
             return null;
         }
+    }
+
+    public ArrayList<Movie> topRatedMovies() {
+        ArrayList<Movie> bestMovies = new ArrayList<>();
+        for (Movie movie: movieList) {
+            if (movie.getRating() == 5) {
+                bestMovies.add(movie);
+            }
+        }
+        return bestMovies;
     }
 
     @Override

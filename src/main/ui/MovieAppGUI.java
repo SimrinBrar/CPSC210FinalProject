@@ -9,6 +9,7 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MovieAppGUI {
 
@@ -25,18 +26,45 @@ public class MovieAppGUI {
     private JTextField newMovieYear;
     private JTextField newMovieRating;
     private MovieList movieList;
+    private JLabel defaultExpression;
+    private JButton topRatedButton;
 
 
     public MovieAppGUI() {
         frame = new JFrame("Movie List");
-        setList();
         setBottomPanel();
         frame.add(buttonPane, BorderLayout.PAGE_END);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        defaultExpression = new JLabel("Add movies below");
+        movieList = new MovieList("My Movie List");
+        setList();
+        setSidePanel();
         frame.add(splitPane);
         SetMenuBar();
         frame.setSize(500, 500);
         frame.setVisible(true);
+    }
+
+    private void setSidePanel() {
+        splitPane.setRightComponent(panel);
+        panel.setLayout(new GridLayout(20,1,1,1));
+        panel.add(defaultExpression, 0, 0);
+        topRatedButton = new JButton("click for 5 star movies");
+        panel.add(topRatedButton, 0,2);
+        topRatedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                listModel.removeAllElements();
+                ArrayList<Movie> bestMovies = movieList.topRatedMovies();
+                for (Movie movie: bestMovies) {
+                    listModel.addElement(movie.getTitle());
+                }
+//                ImageIcon stars = new ImageIcon(getClass().getResource());
+//                JLabel starsLabel = new JLabel(stars);
+//                panel.add(starsLabel, 0, 3);
+            }
+        });
+
     }
 
 
@@ -58,9 +86,9 @@ public class MovieAppGUI {
         splitPane = new JSplitPane();
         list = new JList<>();
         list.setModel(listModel);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         splitPane.setLeftComponent(new JScrollPane(list));
         panel.add(label);
-        splitPane.setRightComponent(panel);
     }
 
     private void setBottomPanel() {
@@ -91,6 +119,8 @@ public class MovieAppGUI {
         buttonPane.add(newMovieRating);
     }
 
+
+
     class AddListener implements ActionListener, DocumentListener {
         private boolean alreadyEnabled = false;
         private JButton button;
@@ -105,7 +135,6 @@ public class MovieAppGUI {
             String title = newMovieTitle.getText();
             int year = Integer.parseInt(newMovieYear.getText());
             int rating = Integer.parseInt(newMovieRating.getText());
-            movieList = new MovieList("My Movie List");
             createNewMovie(title, year, rating);
 
             if (title.equals("")) {
@@ -115,7 +144,7 @@ public class MovieAppGUI {
                 return;
             }
 
-            listModel.insertElementAt(newMovieTitle.getText(), movieList.movieListSize());
+            listModel.insertElementAt(newMovieTitle.getText(), 0);
 
             newMovieTitle.requestFocusInWindow();
             newMovieRating.requestFocusInWindow();
@@ -158,10 +187,13 @@ public class MovieAppGUI {
         }
     }
 
+
+
     private void createNewMovie(String title, int year, int rating) {
         Movie newMovie = new Movie();
         newMovie.setTitle(title);
         newMovie.setYear(year);
         newMovie.setRating(rating);
+        movieList.addMovie(newMovie);
     }
 }
