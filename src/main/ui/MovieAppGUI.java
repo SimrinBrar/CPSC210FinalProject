@@ -1,6 +1,7 @@
 package ui;
 
 import model.Movie;
+import model.MovieList;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -23,6 +24,7 @@ public class MovieAppGUI {
     private JTextField newMovieTitle;
     private JTextField newMovieYear;
     private JTextField newMovieRating;
+    private MovieList movieList;
 
 
     public MovieAppGUI() {
@@ -64,6 +66,8 @@ public class MovieAppGUI {
     private void setBottomPanel() {
         buttonPane = new JPanel();
         addButton =new JButton("Add");
+        AddListener addListener = new AddListener(addButton);
+        addButton.addActionListener(addListener);
         newMovieTitle = new JTextField(3);
         newMovieYear = new JTextField(2);
         newMovieRating = new JTextField(1);
@@ -73,6 +77,10 @@ public class MovieAppGUI {
         JLabel titleLabel = new JLabel("Title");
         JLabel yearLabel = new JLabel("Year");
         JLabel ratingLabel = new JLabel("Rating");
+        layoutButtonPane(titleLabel, yearLabel, ratingLabel);
+    }
+
+    private void layoutButtonPane(JLabel titleLabel, JLabel yearLabel, JLabel ratingLabel) {
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
         buttonPane.add(addButton);
         buttonPane.add(titleLabel);
@@ -87,35 +95,34 @@ public class MovieAppGUI {
         private boolean alreadyEnabled = false;
         private JButton button;
 
+        public AddListener(JButton button) {
+            this.button = button;
+        }
+
+
         @Override
         public void actionPerformed(ActionEvent e) {
             String title = newMovieTitle.getText();
             int year = Integer.parseInt(newMovieYear.getText());
-            int rating = Integer.parseInt((newMovieRating.getText()));
-            if (title == "" || newMovieYear.getText() == "" || newMovieRating.getText() == "") {
-                Toolkit.getDefaultToolkit().beep();
-                resetTextFields();
-            }
-            int index = list.getSelectedIndex();
-            if (index == -1) {
-                index = 0;
-            } else {
-                index++;
-            }
-            Movie movie = new Movie();
-            movie.setTitle(title);
-            movie.setYear(year);
-            movie.setRating(rating);
-            listModel.insertElementAt(movie.getTitle(), index);
-        }
+            int rating = Integer.parseInt(newMovieRating.getText());
+            movieList = new MovieList("My Movie List");
+            createNewMovie(title, year, rating);
 
-        private void resetTextFields() {
+            if (title.equals("")) {
+                Toolkit.getDefaultToolkit().beep();
+                newMovieTitle.requestFocusInWindow();
+                newMovieTitle.selectAll();
+                return;
+            }
+
+            listModel.insertElementAt(newMovieTitle.getText(), movieList.movieListSize());
+
             newMovieTitle.requestFocusInWindow();
-            newMovieYear.requestFocusInWindow();
             newMovieRating.requestFocusInWindow();
-            newMovieTitle.selectAll();
-            newMovieYear.selectAll();
-            newMovieRating.selectAll();
+            newMovieYear.requestFocusInWindow();
+            newMovieTitle.setText("");
+            newMovieYear.setText("");
+            newMovieRating.setText("");
         }
 
         @Override
@@ -151,5 +158,10 @@ public class MovieAppGUI {
         }
     }
 
-
+    private void createNewMovie(String title, int year, int rating) {
+        Movie newMovie = new Movie();
+        newMovie.setTitle(title);
+        newMovie.setYear(year);
+        newMovie.setRating(rating);
+    }
 }
