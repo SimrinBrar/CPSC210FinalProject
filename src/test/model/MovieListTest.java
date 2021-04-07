@@ -68,12 +68,13 @@ public class MovieListTest {
         assertEquals(null, testEmptyMovieList.returnNextMovie());
     }
 
+
     @Test
-    public void testTopRatedMovies() {
-        ArrayList<Movie> testList = new ArrayList<>();
-        testList.add(movie2);
-        testList.add(movie2);
-        assertEquals(testList, testMovieList.topRatedMovies());
+    public void testFilterFiveStars() {
+        MovieList expectedList = new MovieList("expected");
+        expectedList.addMovie(movie2);
+        expectedList.addMovie(movie3);
+        assertEquals(expectedList, testMovieList.filterFiveStars());
     }
 
 

@@ -1,8 +1,55 @@
 {
-    "movies": [{
-        "year": 2009,
-        "rating": 3,
-        "title": "Avatar"
-    }],
+    "movies": [
+        {
+            "year": 1975,
+            "rating": 5,
+            "title": "Jaws"
+        },
+        {
+            "year": 2009,
+            "rating": 3,
+            "title": "Avatar"
+        },
+        {
+            "year": 2018,
+            "rating": 5,
+            "title": "A Quiet Place"
+        },
+        {
+            "year": 2009,
+            "rating": 3,
+            "title": "Three Idiots"
+        },
+        {
+            "year": 2017,
+            "rating": 4,
+            "title": "Baby Driver"
+        },
+        {
+            "year": 1988,
+            "rating": 5,
+            "title": "Die Hard"
+        },
+        {
+            "year": 2013,
+            "rating": 1,
+            "title": "Would You Rather"
+        },
+        {
+            "year": 1960,
+            "rating": 4,
+            "title": "Psycho"
+        },
+        {
+            "year": 1978,
+            "rating": 3,
+            "title": "Halloween"
+        },
+        {
+            "year": 1996,
+            "rating": 5,
+            "title": "Scream "
+        }
+    ],
     "name": "My Movie List"
 }

@@ -27,6 +27,13 @@ public class MovieList implements Writable {
         return movieList.get(n);
     }
 
+
+
+    //EFFECTS: returns the number of movies in a movie list
+    public int movieListSize() {
+        return movieList.size();
+    }
+
     //EFFECTS: returns a list of movie titles
     public ArrayList<String> getTitleList() {
         ArrayList<String> lst = new ArrayList<>();
@@ -37,10 +44,26 @@ public class MovieList implements Writable {
         return lst;
     }
 
-    //EFFECTS: returns the number of movies in a movie list
-    public int movieListSize() {
-        return movieList.size();
+    //EFFECTS: filters movieList so there are only movies with 5 stars
+    public MovieList filterFiveStars() {
+        MovieList fiveStarList = new MovieList("5 star filtered list");
+        for (Movie m: movieList) {
+            if (m.getRating() == 5) {
+                fiveStarList.addMovie(m);
+            }
+        }
+        return fiveStarList;
     }
+
+    //EFFECTS: takes a filtered list of 5 star movies and returns the original list
+    public MovieList unfilterFiveStars() {
+        MovieList unfilteredList = new MovieList("unfiltered list");
+        for (Movie m: movieList) {
+            unfilteredList.addMovie(m);
+        }
+        return unfilteredList;
+    }
+
 
     //MODIFIES: this
     //EFFECTS: adds a movie to a list
@@ -75,17 +98,6 @@ public class MovieList implements Writable {
         }
     }
 
-
-    //EFFECTS: returns a list of movies with 5 star review
-    public ArrayList<Movie> topRatedMovies() {
-        ArrayList<Movie> bestMovies = new ArrayList<>();
-        for (Movie movie: movieList) {
-            if (movie.getRating() == 5) {
-                bestMovies.add(movie);
-            }
-        }
-        return bestMovies;
-    }
 
     @Override
     public JSONObject toJson() {
