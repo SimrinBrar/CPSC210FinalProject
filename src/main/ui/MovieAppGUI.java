@@ -149,7 +149,7 @@ public class MovieAppGUI implements ListSelectionListener {
                 rightPanel.validate();
             }
 
-            movieList = movieList.filterFiveStars(); 
+            movieList = movieList.filterFiveStars();
 
             ArrayList<String> bestMovies = movieList.getTitleList();
             for (String title : bestMovies) {

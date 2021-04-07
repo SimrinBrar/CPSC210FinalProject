@@ -28,7 +28,6 @@ public class MovieList implements Writable {
     }
 
 
-
     //EFFECTS: returns the number of movies in a movie list
     public int movieListSize() {
         return movieList.size();
@@ -47,21 +46,12 @@ public class MovieList implements Writable {
     //EFFECTS: filters movieList so there are only movies with 5 stars
     public MovieList filterFiveStars() {
         MovieList fiveStarList = new MovieList("5 star filtered list");
-        for (Movie m: movieList) {
+        for (Movie m : movieList) {
             if (m.getRating() == 5) {
                 fiveStarList.addMovie(m);
             }
         }
         return fiveStarList;
-    }
-
-    //EFFECTS: takes a filtered list of 5 star movies and returns the original list
-    public MovieList unfilterFiveStars() {
-        MovieList unfilteredList = new MovieList("unfiltered list");
-        for (Movie m: movieList) {
-            unfilteredList.addMovie(m);
-        }
-        return unfilteredList;
     }
 
 
