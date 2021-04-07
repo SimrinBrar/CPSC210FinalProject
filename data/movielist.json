@@ -1,15 +1,8 @@
 {
-    "movies": [
-        {
-            "year": 1975,
-            "rating": 0,
-            "title": "jaws"
-        },
-        {
-            "year": 2009,
-            "rating": 0,
-            "title": "avatar"
-        }
-    ],
+    "movies": [{
+        "year": 2009,
+        "rating": 3,
+        "title": "Avatar"
+    }],
     "name": "My Movie List"
 }
