@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.InvalidRatingException;
 import model.Movie;
 import model.MovieList;
 import persistence.JsonReader;
@@ -94,9 +95,10 @@ public class MovieAppGUI implements ListSelectionListener {
             int rating = Integer.parseInt(ratingTextField.getText());
 
             Movie newMovie = new Movie();
+
+            setNewMovieRating(rating, newMovie);
             newMovie.setTitle(title);
             newMovie.setYear(year);
-            newMovie.setRating(rating);
             movieList.addMovie(newMovie);
 
             if (title.equals("")) {
@@ -114,6 +116,16 @@ public class MovieAppGUI implements ListSelectionListener {
             ratingTextField.setText("");
         }
     };
+
+    private void setNewMovieRating(int rating, Movie newMovie) {
+        try {
+            newMovie.setRating(rating);
+        } catch (InvalidRatingException invalidRatingException) {
+            JOptionPane.showMessageDialog(null,
+                    "The rating you entered is invalid. No rating was set for this movie",
+                    "INVALID RATING", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
     //EFFECTS: creates and shows GUI for right panel
     private void rightPanelGUI() {
@@ -189,7 +201,13 @@ public class MovieAppGUI implements ListSelectionListener {
                 rightPanel.add(ratingLabel, 6);
                 titleLabel.setText("Title: " + selectedMovie.getTitle());
                 yearLabel.setText("Release year: " + selectedMovie.getYear());
-                ratingLabel.setText("Rating (1-5) : " + selectedMovie.getRating());
+                String rating;
+                if (selectedMovie.getRating() == 0) {
+                    rating = "No Rating";
+                } else {
+                    rating = Integer.toString(selectedMovie.getRating());
+                }
+                ratingLabel.setText("Rating (1-5) : " + rating);
                 rightPanel.validate();
             }
         }
@@ -241,7 +259,7 @@ public class MovieAppGUI implements ListSelectionListener {
         public void actionPerformed(ActionEvent e) {
             try {
                 movieList = jsonReader.read();
-            } catch (IOException ioException) {
+            } catch (IOException | InvalidRatingException ioException) {
                 ioException.printStackTrace();
             }
             ArrayList<String> movieTitles = movieList.getTitleList();

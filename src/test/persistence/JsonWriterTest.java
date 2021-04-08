@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.InvalidRatingException;
 import model.Movie;
 import model.MovieList;
 import org.junit.jupiter.api.Test;
@@ -36,12 +37,12 @@ public class JsonWriterTest extends JsonTest {
             ml = reader.read();
             assertEquals("My movie list", ml.getName());
             assertEquals(0, ml.movieListSize());
-        } catch (IOException e) {
+        } catch (IOException | InvalidRatingException e) {
             fail("Exception should not have been thrown");
         }
     }
 
-    Movie testMovie1() {
+    Movie testMovie1() throws InvalidRatingException {
         Movie m1 = new Movie();
         m1.setTitle("shrek 2");
         m1.setYear(2004);
@@ -49,7 +50,7 @@ public class JsonWriterTest extends JsonTest {
         return m1;
     }
 
-    Movie testMovie2() {
+    Movie testMovie2() throws InvalidRatingException {
         Movie m2 = new Movie();
         m2.setTitle("shrek");
         m2.setYear(2001);
@@ -74,7 +75,7 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(2, ml.movieListSize());
             checkMovie("shrek 2", 2004, 4, ml.getMovie(0));
             checkMovie("shrek", 2001, 5, ml.getMovie(1));
-        } catch (IOException e) {
+        } catch (IOException | InvalidRatingException e) {
             fail("Exception should not have been thrown");
         }
     }

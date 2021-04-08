@@ -1,5 +1,6 @@
 package ui;
 
+import exceptions.InvalidRatingException;
 import model.Movie;
 import model.MovieList;
 import persistence.JsonReader;
@@ -80,7 +81,7 @@ public class MovieApp {
         try {
             myList = jsonReader.read();
             System.out.println("Loaded " + myList.getName() + "from " + JSON_STORE);
-        } catch (IOException e) {
+        } catch (IOException | InvalidRatingException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
@@ -137,12 +138,12 @@ public class MovieApp {
         System.out.println("to change this movie rating enter a number between 1 and 5\n");
         int select = input.nextInt();
 
-        if (select == 1 || select == 2 || select == 3 || select == 4 || select == 5) {
+        try {
             m.setRating(select);
-        } else {
-            System.out.println("not valid, rating was not changed");
-            System.out.println(" ");
+        } catch (InvalidRatingException e) {
+            System.out.println("rating invalid");
         }
+
     }
 
 

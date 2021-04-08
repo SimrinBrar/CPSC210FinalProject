@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.InvalidRatingException;
 import model.Movie;
 import model.MovieList;
 import org.json.JSONArray;
@@ -24,7 +25,7 @@ public class JsonReader {
 
     //EFFECTS: reads MovieList from file and returns it
     //throws IOException if an error occurs reading data from file
-    public MovieList read() throws IOException {
+    public MovieList read() throws IOException, InvalidRatingException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseMovieList(jsonObject);
@@ -42,7 +43,7 @@ public class JsonReader {
     }
 
     //EFFECTS:parses MovieList from JSON object and returns it
-    private MovieList parseMovieList(JSONObject jsonObject) {
+    private MovieList parseMovieList(JSONObject jsonObject) throws InvalidRatingException {
         String name = jsonObject.getString("name");
         MovieList ml = new MovieList(name);
         addMovies(ml, jsonObject);
@@ -51,7 +52,7 @@ public class JsonReader {
 
     //MODIFIES: ml
     //EFFECTS: parses movies from JSON object and adds them to MovieList
-    private void addMovies(MovieList ml, JSONObject jsonObject) {
+    private void addMovies(MovieList ml, JSONObject jsonObject) throws InvalidRatingException {
         JSONArray jsonArray = jsonObject.getJSONArray("movies");
         for (Object json : jsonArray) {
             JSONObject nextMovie = (JSONObject) json;
@@ -61,7 +62,7 @@ public class JsonReader {
 
     //MODIFIES: ml
     //EFFECTS: parses movie from JSON object and adds it to MovieList
-    private void addMovie(MovieList ml, JSONObject jsonObject) {
+    private void addMovie(MovieList ml, JSONObject jsonObject) throws InvalidRatingException {
         String title = jsonObject.getString("title");
         int year = jsonObject.getInt("year");
         int rating = jsonObject.getInt("rating");

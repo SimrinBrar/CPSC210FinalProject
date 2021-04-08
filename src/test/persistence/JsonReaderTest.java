@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.InvalidRatingException;
 import model.MovieList;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ public class JsonReaderTest extends JsonTest {
         try {
             MovieList ml = reader.read();
             fail("IOException expected");
-        } catch (IOException e) {
+        } catch (IOException | InvalidRatingException e) {
         }
     }
 
@@ -28,7 +29,7 @@ public class JsonReaderTest extends JsonTest {
             MovieList ml = reader.read();
             assertEquals("My movie list", ml.getName());
             assertEquals(0, ml.movieListSize());
-        } catch (IOException e) {
+        } catch (IOException | InvalidRatingException e) {
             fail("Couldn't read from file");
         }
     }
@@ -43,7 +44,7 @@ public class JsonReaderTest extends JsonTest {
             checkMovie("shrek", 2001, 5, ml.getMovie(0));
             checkMovie("shrek 2", 2004, 4, ml.getMovie(1));
 
-        } catch (IOException e) {
+        } catch (IOException | InvalidRatingException e) {
             fail("couldn't read from fle");
         }
 

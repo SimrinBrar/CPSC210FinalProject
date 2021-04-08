@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.InvalidRatingException;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -10,7 +11,6 @@ public class Movie implements Writable {
     private int rating;
     private String title;
 
-    //REQUIRES: rating is an integer between 1 and 5
     //EFFECTS: constructs a movie with title, release year and rating
     public Movie() {
         this.title = title;
@@ -43,7 +43,12 @@ public class Movie implements Writable {
         this.year = year;
     }
 
-    public void setRating(int rating) {
+    //EFFECTS: sets rating for movie and throws exception if it is not between 1 and 5
+    public void setRating(int rating) throws InvalidRatingException {
+        if (rating > 5 || rating < 1) {
+            throw new InvalidRatingException();
+        }
+
         this.rating = rating;
     }
 

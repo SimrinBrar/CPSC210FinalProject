@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.InvalidRatingException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ public class MovieListTest {
     private Movie movie3;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws InvalidRatingException {
         testMovieList = new MovieList("test movie list");
         movie1 = new Movie();
         movie1.setTitle("TestMovie1");
@@ -71,10 +72,10 @@ public class MovieListTest {
 
     @Test
     public void testFilterFiveStars() {
-        MovieList expectedList = new MovieList("expected");
-        expectedList.addMovie(movie2);
-        expectedList.addMovie(movie3);
-        assertEquals(expectedList, testMovieList.filterFiveStars());
+        MovieList filteredList = testMovieList.filterFiveStars();
+        assertTrue(filteredList.movieListSize() == 2);
+        assertTrue(filteredList.returnNextMovie() == movie2);
+
     }
 
 
