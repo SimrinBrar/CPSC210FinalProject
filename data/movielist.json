@@ -49,6 +49,11 @@
             "year": 1996,
             "rating": 5,
             "title": "Scream "
+        },
+        {
+            "year": 1985,
+            "rating": 5,
+            "title": "Back To The Future"
         }
     ],
     "name": "My Movie List"

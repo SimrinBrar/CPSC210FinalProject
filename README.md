@@ -11,3 +11,4 @@ Some user stories to describe this app include:
 - As a user, I want to be able to be able to select a movie and rate it on a scale of 5 stars 
 - As a user, I want an option to save my movie list.
 - As a user, when I start the movie app i want to have to option to load my movie list from a file.
+- As a user, I want to be able to filter my list and view only 5 star rated movies.
