@@ -18,3 +18,8 @@ Some user stories to describe this app include:
 In the Movie class, i removed the requires clause for setRating() method. If the rating is not 
 between 1 and 5 an exception is thrown. In the MovieAppGUI class the exception is caught and 
 an error message pops up, and no rating is set for that movie. 
+
+**Phase 5: Task 3**
+
+To improve my Design I could seperate my MovieAppGUI class into seperate classes to satisfy
+ the single responisbility principle. I could seperate into seperate classes for each panel.

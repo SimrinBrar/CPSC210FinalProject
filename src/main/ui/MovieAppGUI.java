@@ -29,13 +29,12 @@ public class MovieAppGUI implements ListSelectionListener {
     private DefaultListModel listModel;
     private JButton addButton;
     private JButton fiveStarsButton;
-    private JButton allMoviesButton;
+//    private JButton allMoviesButton;
     private JSplitPane splitPane;
     private JTextField titleTextField;
     private JTextField yearTextField;
     private JTextField ratingTextField;
     private MovieList movieList;
-    private MovieList fullMovieList;
     private JLabel fiveStarImage;
     private JLabel allMoviesLabel;
     private JLabel titleLabel;

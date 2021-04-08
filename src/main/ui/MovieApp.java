@@ -128,7 +128,7 @@ public class MovieApp {
     //EFFECTS: finds selected movie and returns it
     private Movie searchMovieList() {
         String select = input.nextLine();
-        select = select.toLowerCase();
+        select = select;
         return myList.selectMovie(select);
     }
 
