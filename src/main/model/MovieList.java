@@ -27,11 +27,17 @@ public class MovieList implements Writable {
         return movieList.get(n);
     }
 
-
     //EFFECTS: returns the number of movies in a movie list
     public int movieListSize() {
         return movieList.size();
     }
+
+    //MODIFIES: this
+    //EFFECTS: adds a movie to a list
+    public void addMovie(Movie addedMovie) {
+        movieList.add(addedMovie);
+    }
+
 
     //EFFECTS: returns a list of movie titles
     public ArrayList<String> getTitleList() {
@@ -52,13 +58,6 @@ public class MovieList implements Writable {
             }
         }
         return fiveStarList;
-    }
-
-
-    //MODIFIES: this
-    //EFFECTS: adds a movie to a list
-    public void addMovie(Movie addedMovie) {
-        movieList.add(addedMovie);
     }
 
     //EFFECTS: takes in a string and searches list for movie titles match that string.

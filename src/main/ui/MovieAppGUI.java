@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//GUI for Movie App
 public class MovieAppGUI implements ListSelectionListener {
 
     private static final String JSON_STORE = "./data/movielist.json";
@@ -83,6 +84,7 @@ public class MovieAppGUI implements ListSelectionListener {
         frame.add(bottomPanel, BorderLayout.PAGE_END);
     }
 
+    //MODIFIES: this
     //EFFECTS: action listener for "Add" button
     ActionListener addButtonActionListener = new ActionListener() {
         @Override
@@ -136,6 +138,7 @@ public class MovieAppGUI implements ListSelectionListener {
 //        allMoviesButton.addActionListener(allMoviesActionListener);
     }
 
+    //MODIFIES: this
     //EFFECTS: creates action listener for "5 star movies" button
     ActionListener fiveStarsActionListener = new ActionListener() {
         @Override
@@ -184,8 +187,8 @@ public class MovieAppGUI implements ListSelectionListener {
                 rightPanel.add(titleLabel, 4);
                 rightPanel.add(yearLabel, 5);
                 rightPanel.add(ratingLabel, 6);
-                titleLabel.setText("title: " + selectedMovie.getTitle());
-                yearLabel.setText("release year: " + selectedMovie.getYear());
+                titleLabel.setText("Title: " + selectedMovie.getTitle());
+                yearLabel.setText("Release year: " + selectedMovie.getYear());
                 ratingLabel.setText("Rating (1-5) : " + selectedMovie.getRating());
                 rightPanel.validate();
             }
